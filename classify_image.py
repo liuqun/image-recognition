@@ -195,7 +195,7 @@ def maybe_download_and_extract():
 
 
 def main(_):
-  #maybe_download_and_extract()
+  maybe_download_and_extract()
   image = (FLAGS.image_file if FLAGS.image_file else
            os.path.join(FLAGS.model_dir, 'cropped_panda.jpg'))
   run_inference_on_image(image)
@@ -209,10 +209,11 @@ if __name__ == '__main__':
   #   Map from synset ID to a human readable string.
   # imagenet_2012_challenge_label_map_proto.pbtxt:
   #   Text representation of a protocol buffer mapping a label to synset ID.
+  src_dir = os.path.abspath(os.path.dirname(__file__))
   parser.add_argument(
       '--model_dir',
       type=str,
-      default='/tmp/imagenet',
+      default=os.path.join(src_dir, 'model_dir'),
       help="""\
       Path to classify_image_graph_def.pb,
       imagenet_synset_to_human_label_map.txt, and
